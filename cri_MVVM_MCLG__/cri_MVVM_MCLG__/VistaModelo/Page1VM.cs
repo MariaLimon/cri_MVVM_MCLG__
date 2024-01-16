@@ -153,7 +153,6 @@ namespace cri_MVVM_MCLG__.VistaModelo
 			{
 				var nombrePersona = nombre;
 				List<string> atributoPersona = procesoAtributos(esHombre);
-
 				
 				int longitud = atributoPersona.Count;
 				if (longitud == 0)
