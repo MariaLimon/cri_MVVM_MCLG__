@@ -87,86 +87,92 @@ namespace cri_MVVM_MCLG__.VistaModelo
 		{
 			await DisplayAlert("Titulo", "Mensaje", "Ok");
 		}
-		public void ProcesoSimple()
+		public List<string> procesoAtributos(bool esHombre)
 		{
-			if (!string.IsNullOrEmpty(nombre))
+			List<string> result = new List<string>();
+			if (!esHombre)
 			{
-				var nombrePersona = nombre;
-				List<string> atributoPersona = new List<string>();
+				if (alto == true)
+				{
+					result.Add("alta");
+				}
+				if (listo == true)
+				{
+					result.Add("lista");
+				}
 
-				if (esHombre == false)
+				if (raro == true)
 				{
-					if (alto == true)
-					{
-						atributoPersona.Add("alta");
-					}
-					if (listo == true)
-					{
-						atributoPersona.Add("lista");
-					}
-					
-					if (raro == true)
-					{
-						atributoPersona.Add("rara");
-					}
-					if (chaparro == true)
-					{
-						atributoPersona.Add("chaparra");
-					}
+					result.Add("rara");
+				}
+				if (chaparro == true)
+				{
+					result.Add("chaparra");
+				}
 
-				}
-				else
-				{
-					if (alto == true)
-					{
-						atributoPersona.Add("alto");
-					}
-					if (listo == true)
-					{
-						atributoPersona.Add("listo");
-					}
-					
-					if (raro == true)
-					{
-						atributoPersona.Add("raro");
-					}
-					if (chaparro == true)
-					{
-						atributoPersona.Add("chaparro");
-					}
-				}
-				
-				if (extravagante == true)
-				{
-					atributoPersona.Add("extravagante");
-				}
-				if (grande == true)
-				{
-					atributoPersona.Add("grande");
-				}
-				
-				int lonfitud = atributoPersona.Count;
-				if (lonfitud == 0)
-				{
-					DisplayAlert("Atributos", "seleccione al menos un atributo", "Ok");
-				}
-				else if(lonfitud == 1)
-				{
-
-					var cadena = string.Join(", ", atributoPersona);
-					critica = $"{nombrePersona} es {cadena}";
-				}
-				else{
-
-					var cadena = string.Join(", ", atributoPersona.Take(lonfitud - 1));
-					string ultimo = atributoPersona[lonfitud - 1];
-					critica = $"{nombrePersona} es {cadena} y {ultimo}";
-				}
-				
 			}
 			else
 			{
-				DisplayAlert("Datos erroneos", "Por favor, llena la información que se solicita", "Ok");
+				if (alto == true)
+				{
+					result.Add("alto");
+				}
+				if (listo == true)
+				{
+					result.Add("listo");
+				}
+
+				if (raro == true)
+				{
+					result.Add("raro");
+				}
+				if (chaparro == true)
+				{
+					result.Add("chaparro");
+				}
+			}
+
+			if (extravagante == true)
+			{
+				result.Add("extravagante");
+			}
+			if (grande == true)
+			{
+				result.Add("grande");
+			}
+			return result;
+		}
+		public void ProcesoSimple()
+		{
+			if (string.IsNullOrEmpty(nombre))
+			{
+				critica="Por favor, llena la información que se solicita";
+				return;
+			}
+			else
+			{
+				var nombrePersona = nombre;
+				List<string> atributoPersona = procesoAtributos(esHombre);
+
+				
+				int longitud = atributoPersona.Count;
+				if (longitud == 0)
+				{
+					critica = "seleccione al menos un atributo";
+				}
+				else if (longitud == 1)
+				{
+
+					var cadena = string.Join(", ", atributoPersona);
+					critica = $"{nombrePersona} es {cadena}.";
+				}
+				else
+				{
+
+					var cadena = string.Join(", ", atributoPersona.Take(longitud - 1));
+					string ultimo = atributoPersona[longitud - 1];
+					critica = $"{nombrePersona} es {cadena} y {ultimo}.";
+				}
 			}
 		}
 		#endregion

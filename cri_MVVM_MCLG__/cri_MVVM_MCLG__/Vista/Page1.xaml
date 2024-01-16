@@ -6,7 +6,7 @@
         <Frame BackgroundColor="#223347" Padding="10" CornerRadius="0">
             <Label Text="Actividad: critografo" HorizontalTextAlignment="Center" TextColor="White" FontSize="30"/>
         </Frame>
-        <StackLayout Margin="15,10">
+        <StackLayout Margin="15,10" >
             <Label Text="Nombre: "
                        TextColor="Black"
                        FontAttributes="Bold"
@@ -141,7 +141,8 @@
                         Placeholder="Critica" 
                         AutoSize="TextChanges" 
                         x:Name="criticaEditor"
-                        Text="{Binding critica}"/>
+                        Text="{Binding critica}"
+                        TextColor="Black"/>
             </Frame>
         </StackLayout>
     </StackLayout>
